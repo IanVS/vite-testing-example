@@ -16,6 +16,29 @@ It uses a combination of the following libraries:
 - [@storybook/testing-react](https://github.com/storybookjs/testing-react) to write unit tests for stories
 - [Testing-library](https://testing-library.com/) for interacting with components in stories/tests
 
+## Try it out
+
+To see this in action, clone the repo and then fire up the storybook with:
+
+```
+npm install
+npm run storybook
+```
+
+to run the tests, either use
+
+```
+npm test
+```
+
+Which will run the unit tests (so far only one here) in three different headless browsers, or
+
+```
+npm test:watch
+```
+
+to start up the tests in watch mode in headless chrome alone.
+
 ## Approach
 
 The main testing approach is to create storybook stories for components and even pages, and then test against those stories. This has a few benefits:
