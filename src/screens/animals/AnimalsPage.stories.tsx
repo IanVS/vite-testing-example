@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import userEvent from '@testing-library/user-event';
-import { screen, waitFor } from '@testing-library/react';
+import { userEvent, screen, waitFor } from '@storybook/testing-library';
 import { makeNetworkDecorators, makeApiMocks } from '../../../test-setup/decorators';
 import { AnimalsPage } from './AnimalsPage';
 

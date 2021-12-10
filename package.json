@@ -33,6 +33,7 @@
     "@storybook/addon-links": "^6.4.0",
     "@storybook/expect": "^27.4.2",
     "@storybook/react": "^6.4.0",
+    "@storybook/testing-library": "^0.0.7",
     "@storybook/testing-react": "^1.2.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
