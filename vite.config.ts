@@ -19,6 +19,8 @@ export default defineConfig({
       '@storybook/testing-react',
       '@testing-library/jest-dom',
       '@testing-library/react',
+      '@testing-library/user-event',
+      'faker',
       'jest-fetch-mock',
       'jest-mock',
     ],

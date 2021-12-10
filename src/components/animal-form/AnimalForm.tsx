@@ -1,8 +1,15 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { addAnimal } from '../../api/animals';
 import type { AddAnimalVariables } from '../../api/animals';
+import { useState } from 'react';
 
-export function AnimalForm() {
+type Props = {
+  onSuccess: (message: string) => void;
+  onFailure: (message: string) => void;
+};
+
+export function AnimalForm({ onSuccess, onFailure }: Props) {
+  const [hasFailed, setHasFailed] = useState(false);
   const mutation = useMutation(addAnimal);
   const queryClient = useQueryClient();
 
@@ -14,8 +21,14 @@ export function AnimalForm() {
         const formData = new FormData(e.currentTarget);
         // Normally would use a library like react-hook-form that ensures type safety
         const data = Object.fromEntries(formData) as unknown as AddAnimalVariables;
-        await mutation.mutateAsync(data);
-        queryClient.invalidateQueries('animals');
+        try {
+          await mutation.mutateAsync(data);
+          queryClient.invalidateQueries('animals');
+          onSuccess(`Added ${data.name} successfully.`);
+        } catch {
+          setHasFailed(true);
+          onFailure(`Could not add ${data.name}`);
+        }
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -33,7 +46,7 @@ export function AnimalForm() {
         </label>
       </div>
 
-      <button style={{ marginTop: 16 }}>Submit</button>
+      <button style={{ marginTop: 16, color: hasFailed ? 'red' : 'black' }}>Submit</button>
     </form>
   );
 }
