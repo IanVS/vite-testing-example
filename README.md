@@ -54,3 +54,12 @@ Furthermore, I can use the `play` function of storybook 6.4, and execute user in
 ### API Mocks
 
 I use MirageJS to mock out network calls, which allows me to easily create different kinds of stories for each component, simply by adjusting the state of the mock api server or what it returns. See `src/components/animal-list/AnimalList.stories.tsx` for an example of creating empty, loading, error, and populated stories by changing the api mocks.
+
+### Jest
+
+Unfortunately jest was not built to run in a browser and their ESM support is still being worked on, so it's not a great fit for vite projects yet. However, there are some useful parts of jest that are published separately, which we can take advantage of.
+
+- [expect](https://jestjs.io/docs/expect): I really like jest's assertion matchers and the messages that they give when they fail. The actual `expect` library published by jest is not directly browser-compatible, but storybook has released a version of it that is, which is what I'm using here.
+- [jest-mock](https://jestjs.io/docs/mock-function-api): Similarly, I find jest's function mocking to be top-rate, and have added it here and made it globally available in tests as `jest.fn()` and `jest.spyOn()`. For an example test using jest-mock, see `src/components/animal-form/AnimalForm.test.tsx`.
+- [jest-fetch-mock](https://www.npmjs.com/package/jest-fetch-mock): Although I prefer to mock out my entire API and assert on the behavior of my application, it's sometimes useful to mock and assert against individual fetch calls. The jest-fetch-mock library works great in the browser, no special setup required. See `src/api/fetch.test.ts` for an example.
+- [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/): Provides some nice assertion helpers onto `expect` when interacting with a dom.
