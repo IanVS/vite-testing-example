@@ -5,7 +5,6 @@ const ignoredBrowserLogs = ['[vite] connecting...', '[vite] connected.'];
 module.exports = {
   files: ['src/**/*.test.{ts,tsx}'],
   plugins: [require('vite-web-test-runner-plugin')()],
-  concurrentBrowsers: 1,
   // This testRunnerHtml allows us to inject variables into global scope
   testRunnerHtml: (testFramework) => `<html>
     <body>
