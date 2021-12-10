@@ -19,6 +19,7 @@ export default defineConfig({
       '@storybook/testing-react',
       '@testing-library/jest-dom',
       '@testing-library/react',
+      'jest-fetch-mock',
       'jest-mock',
     ],
   },
